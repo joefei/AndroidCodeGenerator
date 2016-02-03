@@ -1,0 +1,129 @@
+package ${package};  
+  
+//这个地方可以事先定义好需要的类  
+import java.util.Date;  
+  
+import java.io.Serializable;  
+  
+public class ${className} implements Serializable{  
+<#list properties as pro>  
+    private ${pro.proType} ${pro.proName};  
+</#list>  
+      
+<#list properties as pro>  
+    public void set<@upperFC>${pro.proName}</@upperFC>(${pro.proType} ${pro.proName}){  
+        this.${pro.proName}=${pro.proName};  
+    }  
+      
+    public ${pro.proType} get<@upperFC>${pro.proName}</@upperFC>(){  
+        return this.${pro.proName};  
+    }  
+      
+</#list>  
+}  
+
+public class OrderListAdapter extends RecycleViewAdapter<OrderBean> {
+
+    Context mContext;
+
+    public OrderListAdapter(ArrayList<OrderBean> data, Context context) {
+        super(data);
+        this.mData = (ArrayList) data;
+        this.mContext = context;
+    }
+
+    @Override
+    public RecyclerView.ViewHolder onCreateDataViewHolder(ViewGroup parent) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_rv_order, null);
+        return new MyViewHolder(view);
+    }
+
+    @Override
+    public void onBindDataViewHolder(RecyclerView.ViewHolder holder, int position) {
+        MyViewHolder mHolder = (MyViewHolder) holder;
+         <#list properties2 as pro2> 
+        mHolder.tvCommName.setText(mData.get(position).getCouponName());
+         mHolder.${pro2.proName}.setText(mData.get(position).getCouponName());
+         </#list> 
+    }
+
+ private static class MyViewHolder extends RecyclerView.ViewHolder {
+        <#list properties2 as pro2> 
+        private ${pro2.proType} ${pro2.proName};
+        </#list> 
+
+        public MyViewHolder(View itemView) {
+            super(itemView);
+            <#list properties2 as pro2> 
+             ${pro2.proName} = (${pro2.proType}) itemView.findViewById(R.id.${pro2.proName});  
+            </#list> 
+        }
+    }
+}
+
+//0=待付款,1=已付款,2=已发货,3=已完成,6=申请退款,7=已退款
+    //假设这种注释也有标准，那么就可以自动生成方法；
+    private String getStatusByCode(String code) {
+        String status = "";
+        switch (code) {
+        <#list properties3 as pro3> 
+            case "${pro3.proType}":
+                status = "${pro3.proName}";
+                break;
+          </#list> 
+        }
+        return status;
+    }
+    
+    
+    
+   public class GoodAdapter extends BaseAdapter {
+
+    List<OrderBean.GoodsEntity> mData;
+    Context mContext;
+
+    public GoodAdapter(Context context, List<OrderBean.GoodsEntity> data) {
+        this.mContext = context;
+        this.mData = data;
+    }
+
+    @Override
+    public int getCount() {
+        return mData != null ? mData.size() : 0;
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+    ViewHolder holder;
+        if(convertView==null){
+        holder=new ViewHolder();
+        convertView=LayoutInflater.from(mContext).inflate(R.layout.item_rv_order_child,parent);
+        <#list properties2 as pro2>
+        holder.${pro2.proName} = (${pro2.proType})convertView.findViewById(R.id.${pro2.proName});
+        </#list>
+        convertView.setTag(holder);
+        }else{
+        holder=(ViewHolder)convertView.getTag();
+        }
+        <#list properties2 as pro2>
+        holder.${pro2.proName}.setText("");
+        </#list>
+        return convertView;
+    }
+
+    class ViewHolder {
+        <#list properties2 as pro2> 
+         ${pro2.proType} ${pro2.proName};
+        </#list>
+    }
+}
