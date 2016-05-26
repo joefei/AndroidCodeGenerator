@@ -1,8 +1,8 @@
-package com.zerovoid.main;
+package cc.zerovoid.main;
 
-import com.zerovoid.template.RvAdapterTemplate;
-import com.zerovoid.template.Student;
-import com.zerovoid.util.FreeMaker;
+import cc.zerovoid.template.RvAdapterTemplate;
+import cc.zerovoid.template.Student;
+import cc.zerovoid.util.FreeMaker;
 
 public class Test {
 

@@ -1,4 +1,4 @@
-package com.zerovoid.util;
+package cc.zerovoid.util;
 
 import java.io.OutputStreamWriter;
 

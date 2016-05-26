@@ -1,4 +1,4 @@
-package com.zerovoid.main;
+package cc.zerovoid.main;
 
 public class Test2 {
 	public static void main(String[] args) {

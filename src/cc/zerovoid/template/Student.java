@@ -1,4 +1,4 @@
-package com.zerovoid.template;
+package cc.zerovoid.template;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -9,8 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.zerovoid.util.IGen;
-
+import cc.zerovoid.util.IGen;
 import freemarker.core.ParseException;
 import freemarker.template.Configuration;
 import freemarker.template.MalformedTemplateNameException;

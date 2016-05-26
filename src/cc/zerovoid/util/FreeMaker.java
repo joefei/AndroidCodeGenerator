@@ -1,4 +1,4 @@
-package com.zerovoid.util;
+package cc.zerovoid.util;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -6,8 +6,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 
-import com.zerovoid.main.Test;
-
+import cc.zerovoid.main.Test;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 
